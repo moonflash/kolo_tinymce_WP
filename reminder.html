@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel='stylesheet' href='kolo.css' type='text/css' media='all' />
+
+
+</head>
+<body id="reminder">
+<div class="left"><span>Do not notify me in the future</span><input id="remove" type="checkbox"/></div>
+
+<div class="footer">
+	<button id="no">No, thanks</button>
+	<button id="yes">Yes, please</button>
+</div>
+</body>
+<script type="text/javascript">
+	var no = document.getElementById('no');
+	var yes = document.getElementById('yes');
+	var checkbox = document.getElementById("remove")
+
+	checkbox.addEventListener('click', checkboxChanged)
+	yes.addEventListener("click", openKoloWidget);
+	no.addEventListener("click", notThisArticle);
+	function checkboxChanged(e){
+
+		if (e.target.checked){
+			no.className = "forever"
+		}else{
+			no.className = ""
+		}
+	}
+	function openKoloWidget(e){
+		top.tinyMCE.execCommand("start_kolo")
+	}
+	function notThisArticle(e){
+	  top.tinymce.activeEditor.insertContent('<!--kolo-link-id=false-->');
+	  localStorage.setItem("kolo-wp", e.target.className);
+	  top.document.getElementById("publish").click()
+	  top.tinymce.activeEditor.windowManager.close()
+	}
+
+	</script>
+</html>
+

@@ -1,0 +1,123 @@
+i.gavickpro-kolo-icon {
+    background-image: url('img/kolo.png');
+}
+#reminder button{
+	-webkit-appearance: none;
+	-webkit-font-smoothing: subpixel-antialiased;
+	-webkit-rtl-ordering: logical;
+	-webkit-user-select: none;
+	background-attachment: scroll;
+	background-clip: border-box;
+	/*background-color: rgb(0, 160, 210);*/
+	background-image: none;
+	background-origin: padding-box;
+	background-size: auto;
+	border-bottom-color: rgb(0, 115, 170);
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-image-outset: 0px;
+	border-image-repeat: stretch;
+	border-image-slice: 100%;
+	border-image-source: none;
+	border-image-width: 1;
+	border-left-color: rgb(0, 115, 170);
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-right-color: rgb(0, 115, 170);
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-top-color: rgb(0, 115, 170);
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-top-style: solid;
+	border-top-width: 1px;
+	box-shadow: rgba(120, 200, 230, 0.498039) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.14902) 0px 1px 0px 0px;
+	box-sizing: border-box;
+	color: rgb(255, 255, 255);
+	cursor: pointer;
+	display: inline-block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 13px;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	height: 30px;
+	letter-spacing: normal;
+	line-height: 28px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	padding-bottom: 2px;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 0px;
+	text-align: center;
+	text-decoration: none;
+	text-indent: 0px;
+	text-rendering: auto;
+	text-shadow: none;
+	text-transform: none;
+	vertical-align: top;
+	white-space: nowrap;
+	width: 100px;
+	word-spacing: 0px;
+	writing-mode: lr-tb;
+	-webkit-writing-mode: horizontal-tb;
+}
+#reminder span{
+	font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  line-height: 19.5px;
+  white-space: pre-wrap;
+}
+#reminder .left{
+	position: absolute;
+	left: 17px;
+	bottom: 20px;
+}
+#reminder .footer{
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
+}
+#reminder button#yes{
+	background-color: rgb(0, 160, 210);
+
+}
+#reminder button#yes:hover{
+	    background: #0091cd;
+    border-color: #0073aa;
+    -webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,.6);
+    box-shadow: inset 0 1px 0 rgba(120,200,230,.6);
+    color: #fff;
+}
+#reminder button#no{
+	    color: #555;
+    border-color: #ccc;
+    background: #f7f7f7;
+    -webkit-box-shadow: inset 0 1px 0 #fff,0 1px 0 rgba(0,0,0,.08);
+    box-shadow: inset 0 1px 0 #fff,0 1px 0 rgba(0,0,0,.08);
+}
+#reminder button#no.forever{
+	  color: #555;
+    border-color: red;
+    background: red;
+    color:white;
+    box-shadow: inset 0 1px 0 #fff,0 1px 0 rgba(0,0,0,.08);*/
+}
+#reminder button#no.forever:hover{
+	  color: #555;
+    border-color: #ac2925;
+    background: #ac2925;
+    color: white;
+    box-shadow: inset 0 1px 0 #fff,0 1px 0 rgba(0,0,0,.08);*/
+}
+#reminder button#no:hover{
+	    background: #fafafa;
+    border-color: #999;
+    color: #23282d;
+}

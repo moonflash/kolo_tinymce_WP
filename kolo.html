@@ -1,0 +1,619 @@
+<style type="text/css">
+	body{
+		font-family: 'Open Sans', sans-serif;
+	}
+	form{
+		margin-bottom: 5px;
+	}
+	#message{
+		max-width: 405px;
+    display: inline;
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    font-size: 12px;
+	}
+	#message p.alert{
+		color: red;
+		top:70px;
+	}
+	#message p.green{
+		color: green;
+		top:72px;
+	}
+	#message p{
+		display: inline-block;
+    margin-bottom: 0px;
+    margin-top: 6px;
+    position: absolute;
+    right: 8px;
+    top: 90px;
+    width: 320px;
+	}
+	.button{
+		position: absolute;
+		right: 15px;
+		display: inline;
+		margin-right: 10px;
+	}
+	#widget_settings{
+		margin-top: 5px;
+		width: 180px;
+		border: 1px solid rgba(0,0,0,.6);
+		padding: 5px;
+		border-radius: 5px;
+		background: #fff;
+		-webkit-box-shadow:  0px 0px 5px 0px rgba(0,0,0,.6);
+		-moz-box-shadow:  0px 0px 5px 0px rgba(0,0,0,.6);
+		box-shadow:  0px 0px 5px 0px rgba(0,0,0,.6);
+		margin-right: 100px;
+	}
+	#widget_settings select{
+		float: right;
+	}
+	#widget_settings label{
+		padding: 6px;
+		display: inline-block;
+	}
+	select {
+	   border: 1px solid #111;
+	   background: transparent;
+	   width: 80px;
+	   padding: 3px 3px 3px 17px;
+	   font-size: 13px;
+	   border: 1px solid #ccc;
+	   height: 28px;
+	   text-align: center;
+	   -webkit-appearance: none;
+	   -moz-appearance: none;
+	   appearance: none;
+	} 
+	#kolo-images{
+		display: inline-block;
+	}
+	li{
+		width: 92px;
+    min-height: 92px;
+    min-width: 92px;
+    display: inline-block;
+    position: relative;
+    margin-right: 15px;
+    overflow: hidden;
+    text-align: center;
+    -webkit-box-shadow: inset 0px 0px 66px 0px rgba(210,210,210,1);
+		-moz-box-shadow: inset 0px 0px 66px 0px rgba(210,210,210,1);
+		box-shadow: inset 0px 0px 66px 0px rgba(210,210,210,1);
+	}
+	ul{
+		margin: 0px 0 3px 5px;
+    padding: 5px;
+    max-width: 880px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-height: 110px;
+    white-space: nowrap;
+	}
+	li div{
+		position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: translate(50%,50%);
+    -ms-transform: translate(50%,50%);
+    transform: translate(50%,50%);
+	}
+	li > button{
+		display: none;
+	}
+	li.widget > button{
+		width: 40px;
+		color: white;
+	}
+	li.widget > button > span{
+		background-image: none;
+		color: white;
+		font-size: 13px;
+		font-weight: 500;
+		margin-top: 0px;
+	}
+	li.widget > button > span:before{
+		content: "widget";
+	}
+	li > button > span{
+		-webkit-font-smoothing: subpixel-antialiased;
+		-webkit-user-select: none;
+		background-image: url(../../../wp-includes/images/uploader-icons.png);
+		background-position: -21px 0px;
+		background-repeat: no-repeat;
+		box-sizing: content-box;
+		color: rgb(0, 0, 0);
+		cursor: pointer;
+		display: block;
+		font-family: 'Open Sans', sans-serif;
+		font-size: 12px;
+		font-style: normal;
+		font-variant: normal;
+		font-weight: normal;
+		height: 15px;
+		letter-spacing: normal;
+		line-height: normal;
+		list-style-image: none;
+		list-style-position: outside;
+		list-style-type: none;
+		margin-bottom: 5px;
+		margin-left: 5px;
+		margin-right: 5px;
+		margin-top: 5px;
+		text-align: center;
+		text-indent: 0px;
+		text-shadow: none;
+		text-transform: none;
+		width: 15px;
+		word-spacing: 0px;
+	}
+	li > div > img{
+		min-height: 80px;
+		min-width: 80px;
+		max-height: 100%;
+		position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+		cursor: pointer;
+		transform: translate(-50%,-50%);
+	}
+	li.selected{
+		border-color: #0073aa;
+		box-shadow: inset 0px 0px 66px 0px rgba(210,210,210,1), 0 0 0 5px #1e8cbe;
+	}
+	li.widget{
+		border-color: #42CC67;
+		box-shadow: inset 0px 0px 66px 0px rgba(210,210,210,1), 0 0 0 5px #42CC67;
+	}
+
+	li.remove{
+		border-color: #F3352D;
+		box-shadow: inset 0px 0px 66px 0px rgba(210,210,210,1), 0 0 0 5px #F3352D;
+	}
+	li.remove .media-modal-icon{
+		background-position: -60px 0;
+	}
+	
+	li.remove button{
+		-webkit-appearance: none;
+		-webkit-font-smoothing: subpixel-antialiased;
+		-webkit-user-select: none;
+		align-items: flex-start;
+		background-attachment: scroll;
+		background-clip: border-box;
+		background-color: rgb(243,53,45);
+		background-image: none;
+		background-origin: padding-box;
+		background-size: auto;
+		border-bottom-color: rgb(0, 0, 0);
+		border-bottom-style: none;
+		border-bottom-width: 0px;
+		border-image-outset: 0px;
+		border-image-repeat: stretch;
+		border-image-slice: 100%;
+		border-image-source: none;
+		border-image-width: 1;
+		border-left-color: rgb(0, 0, 0);
+		border-left-style: none;
+		border-left-width: 0px;
+		border-right-color: rgb(0, 0, 0);
+		border-right-style: none;
+		border-right-width: 0px;
+		border-top-color: rgb(0, 0, 0);
+		border-top-style: none;
+		border-top-width: 0px;
+		box-shadow: rgb(255, 255, 255) 0px 0px 0px 1px, rgb(243,53,45) 0px 0px 0px 2px;
+		box-sizing: content-box;
+		color: rgb(0, 0, 0);
+		cursor: pointer;
+		display: block;
+		font-family: 'Open Sans', sans-serif;
+		font-size: 12px;
+		font-stretch: normal;
+		font-style: normal;
+		font-variant: normal;
+		font-weight: normal;
+		height: 24px;
+		letter-spacing: normal;
+		line-height: normal;
+		list-style-image: none;
+		list-style-position: outside;
+		list-style-type: none;
+		margin-bottom: 0px;
+		margin-left: 0px;
+		margin-right: 0px;
+		margin-top: 0px;
+		outline-color: rgb(0, 0, 0);
+		outline-style: none;
+		outline-width: 0px;
+		padding-bottom: 0px;
+		padding-left: 0px;
+		padding-right: 0px;
+		padding-top: 0px;
+		position: absolute;
+		right: 0px;
+		text-align: center;
+		text-indent: 0px;
+		text-rendering: auto;
+		text-shadow: none;
+		text-transform: none;
+		top: 0px;
+		width: 24px;
+		word-spacing: 0px;
+		writing-mode: lr-tb;
+		-webkit-writing-mode: horizontal-tb;
+		z-index: 10;
+	}
+	li.widget button{
+		-webkit-appearance: none;
+		-webkit-font-smoothing: subpixel-antialiased;
+		-webkit-user-select: none;
+		align-items: flex-start;
+		background-attachment: scroll;
+		background-clip: border-box;
+		background-color: rgb(66, 204, 103);
+		background-image: none;
+		background-origin: padding-box;
+		background-size: auto;
+		border-bottom-color: rgb(0, 0, 0);
+		border-bottom-style: none;
+		border-bottom-width: 0px;
+		border-image-outset: 0px;
+		border-image-repeat: stretch;
+		border-image-slice: 100%;
+		border-image-source: none;
+		border-image-width: 1;
+		border-left-color: rgb(0, 0, 0);
+		border-left-style: none;
+		border-left-width: 0px;
+		border-right-color: rgb(0, 0, 0);
+		border-right-style: none;
+		border-right-width: 0px;
+		border-top-color: rgb(0, 0, 0);
+		border-top-style: none;
+		border-top-width: 0px;
+		box-shadow: rgb(255, 255, 255) 0px 0px 0px 1px, rgb(66, 204, 103) 0px 0px 0px 2px;
+		box-sizing: content-box;
+		color: white;
+		cursor: pointer;
+		display: block;
+		font-family: 'Open Sans', sans-serif;
+		font-size: 13px;
+		font-stretch: normal;
+		font-style: normal;
+		font-variant: normal;
+		font-weight: normal;
+		height: 24px;
+		letter-spacing: normal;
+		line-height: normal;
+		list-style-image: none;
+		list-style-position: outside;
+		list-style-type: none;
+		margin-bottom: 0px;
+		margin-left: 0px;
+		margin-right: 0px;
+		margin-top: 0px;
+		outline-color: rgb(0, 0, 0);
+		outline-style: none;
+		outline-width: 0px;
+		padding-bottom: 0px;
+		padding-left: 0px;
+		padding-right: 0px;
+		padding-top: 0px;
+		position: absolute;
+		right: 0px;
+		text-align: center;
+		text-indent: 0px;
+		text-rendering: auto;
+		text-shadow: none;
+		text-transform: none;
+		top: 0px;
+		width: 45px;
+		word-spacing: 0px;
+		writing-mode: lr-tb;
+		-webkit-writing-mode: horizontal-tb;
+		z-index: 10;
+	}
+	li.selected button{
+		-webkit-appearance: none;
+		-webkit-font-smoothing: subpixel-antialiased;
+		-webkit-user-select: none;
+		align-items: flex-start;
+		background-attachment: scroll;
+		background-clip: border-box;
+		background-color: rgb(30, 140, 190);
+		background-image: none;
+		background-origin: padding-box;
+		background-size: auto;
+		border-bottom-color: rgb(0, 0, 0);
+		border-bottom-style: none;
+		border-bottom-width: 0px;
+		border-image-outset: 0px;
+		border-image-repeat: stretch;
+		border-image-slice: 100%;
+		border-image-source: none;
+		border-image-width: 1;
+		border-left-color: rgb(0, 0, 0);
+		border-left-style: none;
+		border-left-width: 0px;
+		border-right-color: rgb(0, 0, 0);
+		border-right-style: none;
+		border-right-width: 0px;
+		border-top-color: rgb(0, 0, 0);
+		border-top-style: none;
+		border-top-width: 0px;
+		box-shadow: rgb(255, 255, 255) 0px 0px 0px 1px, rgb(30, 140, 190) 0px 0px 0px 2px;
+		box-sizing: content-box;
+		color: rgb(0, 0, 0);
+		cursor: pointer;
+		display: block;
+		font-family: 'Open Sans', sans-serif;
+		font-size: 12px;
+		font-stretch: normal;
+		font-style: normal;
+		font-variant: normal;
+		font-weight: normal;
+		height: 24px;
+		letter-spacing: normal;
+		line-height: normal;
+		list-style-image: none;
+		list-style-position: outside;
+		list-style-type: none;
+		margin-bottom: 0px;
+		margin-left: 0px;
+		margin-right: 0px;
+		margin-top: 0px;
+		outline-color: rgb(0, 0, 0);
+		outline-style: none;
+		outline-width: 0px;
+		padding-bottom: 0px;
+		padding-left: 0px;
+		padding-right: 0px;
+		padding-top: 0px;
+		position: absolute;
+		right: 0px;
+		text-align: center;
+		text-indent: 0px;
+		text-rendering: auto;
+		text-shadow: none;
+		text-transform: none;
+		top: 0px;
+		width: 24px;
+		word-spacing: 0px;
+		writing-mode: lr-tb;
+		-webkit-writing-mode: horizontal-tb;
+		z-index: 10;
+	}
+	.button{
+		height: 30px;
+    line-height: 28px;
+    padding: 0 12px 2px;
+    margin-left: 10px;
+    float: left;
+    border-radius: 6px;
+    width: 65px;
+    /*margin-top: 15px;*/
+    background: #00a0d2;
+    border-color: #0073aa;
+    -webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,.5),0 1px 0 rgba(0,0,0,.15);
+    box-shadow: inset 0 1px 0 rgba(120,200,230,.5),0 1px 0 rgba(0,0,0,.15);
+    color: #fff;
+    text-decoration: none;
+	}
+	.button#cancel{
+		background: white;
+    border-color: #0073aa;
+    -webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,.5),0 1px 0 rgba(0,0,0,.15);
+    box-shadow: inset 0 1px 0 rgba(120,200,230,.5),0 1px 0 rgba(0,0,0,.15);
+    color: #0073aa;
+    top: 45px;
+	}
+	.hidden{
+		display: none !important;
+	}
+</style>
+<div id="container" class="hidden">
+<form >
+	<div id="kolo-images"></div>
+	<div id="message" >
+		<div id="widget_settings" class="hidden">
+			<label>Map zoom:</label>
+			<select id="zoom" required>
+				<option value="">select</option>
+			  <option value="20">20</option>
+			  <option value="19">19</option>
+			  <option value="18">18</option>
+			  <option value="17">17</option>
+			  <option value="16">16</option>
+			  <option value="15">15</option>
+			  <option value="14">14</option>
+			  <option value="13">13</option>
+			  <option value="12">12</option>
+			  <option value="11">11</option>
+			  <option value="10">10</option>
+			  <option value="9">9</option>
+			</select><br/>
+			<label>Map type: </label>
+			<select id="map">
+			  <option value="satelite">satelite</option>
+			  <option value="map">map</option>
+			</select>
+		</div>
+		<p id="alert" class="alert">No link available, you can only remove existing widget.</p>
+		<p>Select the image to create/remove Kolo-image-widget.</p>
+	</div>
+<input type="submit" id="submit-kolo" value="Save" class="hidden button media-button button-primary button-large media-button-insert">
+<button type="button" id="cancel" class="button media-button button-primary button-large media-button-insert">Cancel</button>
+</div>
+</form>
+<div id="kolo-frame" style="height:85%; width:100%;"></div>
+
+<script type="text/javascript">
+	// var frame = document.getElementById("kolo-frame").getElementsByTagName('iframe')[0];
+	var submit = document.getElementById("submit-kolo");
+	var cancel = document.getElementById("cancel");
+	var widget_settings = document.getElementById("widget_settings")
+	var args = top.tinymce.activeEditor.windowManager.getParams();
+
+	args.images = args.images.toArray()
+	var container = document.getElementById("container");
+	var alert = document.getElementById("alert");
+	if( args.images.some(function(e){ return e.link_id != undefined})) {
+		container.className = "";
+	}
+
+	var div = document.getElementById("kolo-images")
+	var ul = document.createElement("ul");
+	for (i = 0; i < args.images.length; i++){
+		var li = document.createElement("li");
+		var cont = document.createElement('div');
+		var img = document.createElement("img");
+		var btn = document.createElement("button")
+		s = '<span class="media-modal-icon"></span>'
+		btn.innerHTML = s;
+		img.src= args.images[i].url;
+		if( args.images[i].link_id){
+			li.className = li.className + "widget"
+		}
+		li.addEventListener("click", this.selectImage);
+		cont.appendChild(img);
+		li.appendChild(cont);
+		li.appendChild(btn);
+		ul.appendChild(li);
+	}
+	div.appendChild(ul);
+	function selectImage(event){
+		if (event.currentTarget.className == "widget"){
+			event.currentTarget.className = "remove"
+			submit.className = submit.className.replace("hidden","")
+		}else if (event.currentTarget.className == "remove"){
+			event.currentTarget.className = "widget";
+		}else if (event.currentTarget.className == "selected"){
+			event.currentTarget.className = ""
+			widget_settings.className = widget_settings.className + " hidden"
+		}else if (window.link_id){
+			event.currentTarget.className = "selected"
+			submit.className = submit.className.replace("hidden","")
+			widget_settings.className = widget_settings.className.replace("hidden","")
+		}else{
+			top.tinymce.activeEditor.windowManager.alert("You need to select existing link on the map or create new one.")
+		}
+		
+	}
+	args.images = args.images.map(function(i){return i.url})
+	var url = Object.keys(args).map(function(k) {return encodeURIComponent(k) + '=' +encodeURIComponent(args[k])}).join('&');
+
+	if (args.images.length == 0)
+		url = url + encodeURIComponent("http://kolo.it/assets/default.png")
+	var head = document.getElementsByTagName('head')[0]
+
+	var xhttp = new XMLHttpRequest
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+    	var js = document.createElement("script");
+    	js.innerHTML = xhttp.responseText;
+   		document.head.appendChild(js);
+    }
+  }
+  xhttp.open("PUT", "http://mbeta.kolo.it:3000/embeds/wordpress.js?"+url, true);
+  xhttp.send();
+
+
+
+
+
+	
+	window.addEventListener("message", receiveMessage, false);
+	
+	function receiveMessage(event){
+	  if (event.origin !== "http://mbeta.kolo.it:3000")
+	    return;
+	  top.tinymce.activeEditor.insertContent('<!--kolo-link-id=' + event.data +'-->');
+	  window.link_id = event.data;
+	  submit.className = submit.className.replace("hidden","");
+	  if (args.images.length > 0){
+	  	container.className="";
+	  	alert.className = "green";
+	  	alert.innerText = "Selected Link ID: "+ event.data;
+	  }else{
+	  	top.tinymce.activeEditor.windowManager.confirm("You've successfully created Kolo link. Do you want to create another one?",function(s) {
+			   if (s)
+			      document.getElementById('kolo-frame').firstChild.src = document.getElementById('kolo-frame').firstChild.src;
+			   else
+			      top.tinymce.activeEditor.windowManager.close();
+			});
+	  }
+	  
+	}
+	
+	submit.addEventListener("click",this.submitChanges);
+	cancel.addEventListener("click",closeWindow);
+
+	var list = document.getElementsByTagName("li");
+	function closeWindow(){
+		top.tinymce.activeEditor.windowManager.close();
+	}
+	function submitChanges(event){
+		event.preventDefault();
+		if (![].slice.call(list).some(function(e){ return e.className == "remove" || e.className == "selected"})){
+			top.tinymce.activeEditor.windowManager.alert("Please select image...")
+			return
+		}
+		if ([].slice.call(list).some(function(e){ return e.className == "selected"}) && window.link_id == undefined){
+			top.tinymce.activeEditor.windowManager.alert("Please create link first, or select existing one one the map...")
+			return
+		}
+
+			
+		if ([].slice.call(list).some(function(e){ return e.className == "selected"}) && document.getElementById("zoom").value == ""){
+			top.tinymce.activeEditor.windowManager.alert("Please select the map zoom value...")
+			return
+		}
+			
+		for (i=0; i<list.length;i++){
+			if (list[i].className == "selected"){
+				findImageAndReplaceWithWidget(list[i].getElementsByTagName("img")[0].currentSrc)
+			}else if (list[i].className == "remove"){
+				findWidgetAndRemoveIt(list[i].getElementsByTagName("img")[0].currentSrc)
+			}
+		}
+	}
+	function findWidgetAndRemoveIt(url){
+		var images = top.tinymce.activeEditor.dom.select('img')
+		for (i=0; i<images.length;i++){
+			if (images[i].src == url){
+				images[i].removeAttribute("name")
+				images[i].removeAttribute("data-kolo-link")
+				images[i].removeAttribute("data-kolo-zoom")
+				images[i].removeAttribute("data-kolo-type")
+			}
+		}
+		top.tinymce.activeEditor.windowManager.close();
+	}
+	function findImageAndReplaceWithWidget(url){
+		var images = top.tinymce.activeEditor.dom.select('img')
+		for (i=0; i<images.length;i++){
+			if (images[i].src == url){
+				if (images[i].parentNode.tagName == "A"){
+					images[i].parentNode.parentNode.insertBefore(images[i],images[i].parentNode)
+				}
+				images[i].setAttribute("name","kolo-location")
+				images[i].setAttribute("data-kolo-link",window.link_id)
+				images[i].setAttribute("data-kolo-zoom",document.getElementById("zoom").value)
+				images[i].setAttribute("data-kolo-type",document.getElementById("map").value)
+			}
+		}
+		top.tinymce.activeEditor.windowManager.close();
+	}
+
+
+
+</script>
+
