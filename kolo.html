@@ -511,7 +511,7 @@
 	var url = Object.keys(args).map(function(k) {return encodeURIComponent(k) + '=' +encodeURIComponent(args[k])}).join('&');
 
 	if (args.images.length == 0)
-		url = url + encodeURIComponent("http://kolo.it/assets/default.png")
+		url = url + encodeURIComponent("http://beta.kolo.it/assets/default.png")
 	var head = document.getElementsByTagName('head')[0]
 
 	var xhttp = new XMLHttpRequest
@@ -522,7 +522,7 @@
    		document.head.appendChild(js);
     }
   }
-  xhttp.open("PUT", "http://kolo.it/embeds/wordpress.js?"+url, true);
+  xhttp.open("PUT", "http://beta.kolo.it/embeds/wordpress.js?"+url, true);
   xhttp.send();
 
 

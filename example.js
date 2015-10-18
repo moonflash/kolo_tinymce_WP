@@ -1,8 +1,7 @@
 tinymce.PluginManager.add('kolo_mce', function(editor, url) {
-	console.log('evo mene i mojega brata!!!');
 	var scriptLoader = new tinymce.dom.ScriptLoader();
 
-	scriptLoader.load('http://kolo.it/widget.js');
+	scriptLoader.load('http://beta.kolo.it/widget.js');
 	editor.addCommand('start_kolo', function() {
 		
 		tinymce.activeEditor.windowManager.close()

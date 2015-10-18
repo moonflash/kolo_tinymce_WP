@@ -13,7 +13,7 @@
  * Network:     false
  */
 function wpb_adding_scripts() {
-	wp_register_script('kolo_script', '//kolo.it/widget.js', array(),'1.0', true);
+	wp_register_script('kolo_script', '//beta.kolo.it/widget.js', array(),'1.0', true);
 	wp_enqueue_script('kolo_script');
 }
 
