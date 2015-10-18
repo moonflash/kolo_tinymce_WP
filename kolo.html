@@ -522,7 +522,7 @@
    		document.head.appendChild(js);
     }
   }
-  xhttp.open("PUT", "http://mbeta.kolo.it:3000/embeds/wordpress.js?"+url, true);
+  xhttp.open("PUT", "http://kolo.it/embeds/wordpress.js?"+url, true);
   xhttp.send();
 
 
@@ -533,7 +533,7 @@
 	window.addEventListener("message", receiveMessage, false);
 	
 	function receiveMessage(event){
-	  if (event.origin !== "http://mbeta.kolo.it:3000")
+	  if (event.origin !== "http://beta.kolo.it")
 	    return;
 	  top.tinymce.activeEditor.insertContent('<!--kolo-link-id=' + event.data +'-->');
 	  window.link_id = event.data;

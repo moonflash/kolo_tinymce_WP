@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Koloit image widget
- * Description: Adds support for both the Kolo image widget and Kolo posting in Wordpres
+ * Description: Adds support for both the Kolo image widget and Kolo posting in Wordpress
  * Plugin URI:  blog.kolo.it
  * Version:     1.0.0
  * Author:      Koloit
