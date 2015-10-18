@@ -22,7 +22,7 @@ tinymce.PluginManager.add('kolo_mce', function(editor, url) {
 			event.preventDefault();
 			editor.windowManager.open({
 				title: 'Do you want to add your article to the Kolo?',
-				file: "../wp-content/plugins/kolo-WP/reminder.html",
+				file: "../wp-content/plugins/kolo_tinymce_WP/reminder.html",
 				width:"500px",
 				height:"70px",
     		popup_css:true,
@@ -38,7 +38,7 @@ tinymce.PluginManager.add('kolo_mce', function(editor, url) {
 				title: 'Kolo plugin',
 				width: document.body.offsetWidth-20,
     		height: document.body.offsetHeight-60,
-    		file: "../wp-content/plugins/kolo-WP/kolo.html",
+    		file: "../wp-content/plugins/kolo_tinymce_WP/kolo.html",
     		popup_css:true,
     		close_previous:true
 
