@@ -29,6 +29,7 @@ function kolo_tinymce() {
   <script type="text/javascript">
   var post_id = '<?php global $post; echo $post->ID; ?>';
   var post_url = '<?php echo wp_get_shortlink(); ?>';
+  var current_dir = '<?php echo basename(dirname( __FILE__ )); ?>';
   </script>
   <?php
 	add_filter( 'mce_external_plugins', 'kolo_tinymce_plugin' );
