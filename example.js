@@ -45,7 +45,7 @@ tinymce.PluginManager.add('kolo_mce', function(editor, url) {
 				url: post_url,
 				title:document.getElementById("title").value,
 				content:jQuery(tinyMCE.activeEditor.getContent()).text().substring(0,200),
-				images:jQuery(tinyMCE.activeEditor.getContent()).find('img').map(function(){return {url:jQuery(this).attr('src'),link_id:jQuery(this).attr('data-kolo-link')}})
+				images: Array.prototype.slice.call(tinymce.activeEditor.dom.select('img')).map(function(element){return {url:element.src, link_id:element.dataset.koloLink};})
 			});
 	}
 	editor.addButton('kolo_mce_button_key', {

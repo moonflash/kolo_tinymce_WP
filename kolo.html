@@ -453,7 +453,7 @@
 <button type="button" id="cancel" class="button media-button button-primary button-large media-button-insert">Cancel</button>
 </div>
 </form>
-<div id="kolo-frame" style="height:85%; width:100%;"></div>
+<div id="kolo-frame" style="height:100%; width:100%;"></div>
 
 <script type="text/javascript">
 	// var frame = document.getElementById("kolo-frame").getElementsByTagName('iframe')[0];
@@ -461,8 +461,6 @@
 	var cancel = document.getElementById("cancel");
 	var widget_settings = document.getElementById("widget_settings")
 	var args = top.tinymce.activeEditor.windowManager.getParams();
-
-	args.images = args.images.toArray()
 	var container = document.getElementById("container");
 	var alert = document.getElementById("alert");
 	if( args.images.some(function(e){ return e.link_id != undefined})) {
@@ -471,7 +469,7 @@
 
 	var div = document.getElementById("kolo-images")
 	var ul = document.createElement("ul");
-	for (i = 0; i < args.images.length; i++){
+	for (var i = 0; i < args.images.length; i++){
 		var li = document.createElement("li");
 		var cont = document.createElement('div');
 		var img = document.createElement("img");
@@ -576,18 +574,18 @@
 			top.tinymce.activeEditor.windowManager.alert("Please select the map zoom value...")
 			return
 		}
-			
-		for (i=0; i<list.length;i++){
+		for (var i=0; i<list.length; i++){
 			if (list[i].className == "selected"){
 				findImageAndReplaceWithWidget(list[i].getElementsByTagName("img")[0].currentSrc)
 			}else if (list[i].className == "remove"){
 				findWidgetAndRemoveIt(list[i].getElementsByTagName("img")[0].currentSrc)
 			}
 		}
+		top.tinymce.activeEditor.windowManager.close();
 	}
 	function findWidgetAndRemoveIt(url){
 		var images = top.tinymce.activeEditor.dom.select('img')
-		for (i=0; i<images.length;i++){
+		for (var i=0; i<images.length;i++){
 			if (images[i].src == url){
 				images[i].removeAttribute("name")
 				images[i].removeAttribute("data-kolo-link")
@@ -595,11 +593,11 @@
 				images[i].removeAttribute("data-kolo-type")
 			}
 		}
-		top.tinymce.activeEditor.windowManager.close();
+		// top.tinymce.activeEditor.windowManager.close();
 	}
 	function findImageAndReplaceWithWidget(url){
 		var images = top.tinymce.activeEditor.dom.select('img')
-		for (i=0; i<images.length;i++){
+		for (var i=0; i<images.length;i++){
 			if (images[i].src == url){
 				if (images[i].parentNode.tagName == "A"){
 					images[i].parentNode.parentNode.insertBefore(images[i],images[i].parentNode)
@@ -610,7 +608,7 @@
 				images[i].setAttribute("data-kolo-type",document.getElementById("map").value)
 			}
 		}
-		top.tinymce.activeEditor.windowManager.close();
+		// top.tinymce.activeEditor.windowManager.close();
 	}
 
 
