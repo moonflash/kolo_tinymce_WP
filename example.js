@@ -20,7 +20,7 @@ tinymce.PluginManager.add('kolo_mce', function(editor, url) {
 		if (total.indexOf("<!--kolo-link-id=") == -1 && localStorage.getItem("kolo-wp") != "forever"){
 			event.preventDefault();
 			editor.windowManager.open({
-				title: 'Do you want to add your article to the Kolo?',
+				title: 'Do you want to add your article to Kolo?',
 				file: "../wp-content/plugins/"+current_dir+"/reminder.html",
 				width:"500px",
 				height:"70px",
