@@ -17,9 +17,57 @@ function wpb_adding_scripts() {
 	wp_enqueue_script('kolo_script');
 }
 
+add_filter( 'attachment_fields_to_edit',  'add_kolo_image_attachment_fields_edit', null, 2);
+add_filter( 'attachment_fields_to_save',  'add_kolo_image_attachment_fields_save', null, 2);
 add_action( 'admin_head', 'kolo_tinymce' );
 add_action( 'wp_enqueue_scripts', 'wpb_adding_scripts', 999 ); 
 add_action(	'admin_enqueue_scripts', 'kolo_add_css');
+add_filter( 'wp_get_attachment_image_attributes','kolo_wp_get_attachment_image_attributes',10,2);
+function add_kolo_image_attachment_fields_edit($form_fields, $post){
+
+	$form_fields["kolo_link_id"] = array(
+	 "label" => __("Kolo Link Id"),
+	 "input" => "text", // this is default if "input" is omitted
+	 "value" => get_post_meta($post->ID, "_kolo_link_id", true),
+	             "helps" => __("Paste your kolo-id here"),
+	);
+
+	$form_fields["kolo_map_zoom"] = array(
+	 "label" => __("Map Zoom"),
+	 "input" => "text", // this is default if "input" is omitted
+	 "value" => get_post_meta($post->ID, "_kolo_map_zoom", true),
+							 "helps" => __("Add map zoom ... (between 2 - 18)."),
+	);
+
+	$form_fields["kolo_map_type"] = array(
+	 "label" => __("Map Type"),
+	 "input" => "select", // this is default if "input" is omitted
+	 "value" => get_post_meta($post->ID, "_kolo_map_type", true),
+							 "helps" => __("Type \"satelite\" unless you want default map image."),
+	);
+
+	return $form_fields;
+}
+function add_kolo_image_attachment_fields_save($post, $attachment){
+
+	 update_post_meta($post['ID'], '_kolo_link_id', $attachment['kolo_link_id']);
+	 update_post_meta($post['ID'], '_kolo_map_zoom', $attachment['kolo_map_zoom']);
+	 update_post_meta($post['ID'], '_kolo_map_type', $attachment['kolo_map_type']);
+
+	 return $post;
+}
+function kolo_wp_get_attachment_image_attributes( $atts, $attachment ) {
+	$id = get_post_meta($attachment->ID, "_kolo_link_id", true);
+	
+	if($id){
+		$atts['data-kolo-link'] = $id;
+		$atts['data-kolo-zoom'] = get_post_meta($attachment->ID, "_kolo_map_zoom", true);
+		$atts['data-kolo-type'] = get_post_meta($attachment->ID, "_kolo_map_type", true);
+		$atts['name'] = "kolo-location";
+	}
+  return $atts;
+}
+
 function kolo_tinymce() {
 	global $typenow;
 	
