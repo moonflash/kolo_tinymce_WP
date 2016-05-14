@@ -533,6 +533,10 @@
 	function receiveMessage(event){
 	  if (event.origin !== "http://beta.kolo.it")
 	    return;
+	  if (event.data == "close"){
+	  	top.tinymce.activeEditor.windowManager.close();
+	  	return;
+	  }
 	  top.tinymce.activeEditor.insertContent('<!--kolo-link-id=' + event.data +'-->');
 	  window.link_id = event.data;
 	  submit.className = submit.className.replace("hidden","");
